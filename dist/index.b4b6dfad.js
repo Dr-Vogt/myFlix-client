@@ -2973,7 +2973,7 @@ $RefreshReg$(_c, "MyFlixApplication");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","./index.scss":"lJZlQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"gAMAS","./components/main-view/main-view":"4gflv"}],"iTorj":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","./components/main-view/main-view":"4gflv","./index.scss":"lJZlQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"gAMAS"}],"iTorj":[function(require,module,exports) {
 "use strict";
 module.exports = require("ee51401569654d91");
 
@@ -27160,7 +27160,934 @@ module.exports = require("ef03b89c8fe2794e");
     /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop === "function") __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
 })();
 
-},{}],"lJZlQ":[function() {},{}],"gAMAS":[function(require,module,exports) {
+},{}],"4gflv":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$f7a6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$f7a6.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MainView", ()=>MainView);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _movieCard = require("../movie-card/movie-card");
+var _movieView = require("../movie-view/movie-view");
+var _loginView = require("../login-view/login-view");
+var _signupView = require("../signup-view/signup-view");
+var _s = $RefreshSig$();
+const MainView = ()=>{
+    _s();
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedToken = localStorage.getItem("token");
+    const [movies, setMovies] = (0, _react.useState)([]);
+    const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
+    const [token, setToken] = (0, _react.useState)(storedToken ? storedToken : null);
+    const [user, setUser] = (0, _react.useState)(storedUser ? storedUser : null);
+    (0, _react.useEffect)(()=>{
+        if (!token) return;
+        fetch("https://testingmovieapi.onrender.com/movies", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>response.json()).then((data)=>{
+            setMovies(data);
+        });
+    }, []);
+    if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
+        movieData: selectedMovie,
+        onBackClick: ()=>setSelectedMovie(null)
+    }, void 0, false, {
+        fileName: "src/components/main-view/main-view.jsx",
+        lineNumber: 38,
+        columnNumber: 13
+    }, undefined);
+    if (!user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {
+                onLoggedIn: (user, token)=>{
+                    setUser(user);
+                    setToken(token);
+                }
+            }, void 0, false, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 48,
+                columnNumber: 13
+            }, undefined),
+            "or",
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signupView.SignupView), {}, void 0, false, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 55,
+                columnNumber: 13
+            }, undefined)
+        ]
+    }, void 0, true);
+    if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: "The list is empty!"
+    }, void 0, false, {
+        fileName: "src/components/main-view/main-view.jsx",
+        lineNumber: 61,
+        columnNumber: 16
+    }, undefined);
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: [
+            movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                    movieData: movie,
+                    onMovieClick: ()=>{
+                        setSelectedMovie(movie);
+                    }
+                }, movie.id, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 67,
+                    columnNumber: 17
+                }, undefined)),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                onClick: ()=>{
+                    setUser(null);
+                    setToken(null);
+                    localStorage.clear();
+                },
+                children: "Logout"
+            }, void 0, false, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 75,
+                columnNumber: 13
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/main-view/main-view.jsx",
+        lineNumber: 65,
+        columnNumber: 9
+    }, undefined);
+};
+_s(MainView, "qE9oq1usV3DTzw/HupAdKS8hfRQ=");
+_c = MainView;
+var _c;
+$RefreshReg$(_c, "MainView");
+
+  $parcel$ReactRefreshHelpers$f7a6.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-js/src/esmodule-helpers.js":"6ngmn","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"gAMAS","../login-view/login-view":"9YtA0","../signup-view/signup-view":"4OGiN"}],"bwuIu":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$67b2.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MovieCard", ()=>MovieCard);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+const MovieCard = ({ movieData, onMovieClick })=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        onClick: ()=>{
+            onMovieClick(movieData);
+        },
+        children: movieData.title
+    }, void 0, false, {
+        fileName: "src/components/movie-card/movie-card.jsx",
+        lineNumber: 5,
+        columnNumber: 9
+    }, undefined);
+};
+_c = MovieCard;
+MovieCard.propTypes = {
+    movie: (0, _propTypesDefault.default).shape({
+        title: (0, _propTypesDefault.default).string.isRequired
+    })
+};
+var _c;
+$RefreshReg$(_c, "MovieCard");
+
+  $parcel$ReactRefreshHelpers$67b2.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"6ngmn","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"gAMAS"}],"7wKI2":[function(require,module,exports) {
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */ var ReactIs = require("96e34ae03f5a2631");
+// By explicitly using `prop-types` you are opting into new development behavior.
+// http://fb.me/prop-types-in-prod
+var throwOnDirectAccess = true;
+module.exports = require("cb216452e2171041")(ReactIs.isElement, throwOnDirectAccess);
+
+},{"96e34ae03f5a2631":"7EuwB","cb216452e2171041":"bBUgD"}],"7EuwB":[function(require,module,exports) {
+"use strict";
+module.exports = require("2255125a8e8b1051");
+
+},{"2255125a8e8b1051":"5DsXl"}],"5DsXl":[function(require,module,exports) {
+/** @license React v16.13.1
+ * react-is.development.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */ "use strict";
+(function() {
+    "use strict";
+    // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
+    // nor polyfill, then a plain number is used for performance.
+    var hasSymbol = typeof Symbol === "function" && Symbol.for;
+    var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for("react.element") : 0xeac7;
+    var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for("react.portal") : 0xeaca;
+    var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for("react.fragment") : 0xeacb;
+    var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for("react.strict_mode") : 0xeacc;
+    var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for("react.profiler") : 0xead2;
+    var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for("react.provider") : 0xeacd;
+    var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for("react.context") : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
+    // (unstable) APIs that have been removed. Can we remove the symbols?
+    var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for("react.async_mode") : 0xeacf;
+    var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for("react.concurrent_mode") : 0xeacf;
+    var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for("react.forward_ref") : 0xead0;
+    var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for("react.suspense") : 0xead1;
+    var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for("react.suspense_list") : 0xead8;
+    var REACT_MEMO_TYPE = hasSymbol ? Symbol.for("react.memo") : 0xead3;
+    var REACT_LAZY_TYPE = hasSymbol ? Symbol.for("react.lazy") : 0xead4;
+    var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for("react.block") : 0xead9;
+    var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for("react.fundamental") : 0xead5;
+    var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for("react.responder") : 0xead6;
+    var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for("react.scope") : 0xead7;
+    function isValidElementType(type) {
+        return typeof type === "string" || typeof type === "function" || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
+        type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === "object" && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
+    }
+    function typeOf(object) {
+        if (typeof object === "object" && object !== null) {
+            var $$typeof = object.$$typeof;
+            switch($$typeof){
+                case REACT_ELEMENT_TYPE:
+                    var type = object.type;
+                    switch(type){
+                        case REACT_ASYNC_MODE_TYPE:
+                        case REACT_CONCURRENT_MODE_TYPE:
+                        case REACT_FRAGMENT_TYPE:
+                        case REACT_PROFILER_TYPE:
+                        case REACT_STRICT_MODE_TYPE:
+                        case REACT_SUSPENSE_TYPE:
+                            return type;
+                        default:
+                            var $$typeofType = type && type.$$typeof;
+                            switch($$typeofType){
+                                case REACT_CONTEXT_TYPE:
+                                case REACT_FORWARD_REF_TYPE:
+                                case REACT_LAZY_TYPE:
+                                case REACT_MEMO_TYPE:
+                                case REACT_PROVIDER_TYPE:
+                                    return $$typeofType;
+                                default:
+                                    return $$typeof;
+                            }
+                    }
+                case REACT_PORTAL_TYPE:
+                    return $$typeof;
+            }
+        }
+        return undefined;
+    } // AsyncMode is deprecated along with isAsyncMode
+    var AsyncMode = REACT_ASYNC_MODE_TYPE;
+    var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
+    var ContextConsumer = REACT_CONTEXT_TYPE;
+    var ContextProvider = REACT_PROVIDER_TYPE;
+    var Element = REACT_ELEMENT_TYPE;
+    var ForwardRef = REACT_FORWARD_REF_TYPE;
+    var Fragment = REACT_FRAGMENT_TYPE;
+    var Lazy = REACT_LAZY_TYPE;
+    var Memo = REACT_MEMO_TYPE;
+    var Portal = REACT_PORTAL_TYPE;
+    var Profiler = REACT_PROFILER_TYPE;
+    var StrictMode = REACT_STRICT_MODE_TYPE;
+    var Suspense = REACT_SUSPENSE_TYPE;
+    var hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
+    function isAsyncMode(object) {
+        if (!hasWarnedAboutDeprecatedIsAsyncMode) {
+            hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
+            console["warn"]("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 17+. Update your code to use ReactIs.isConcurrentMode() instead. It has the exact same API.");
+        }
+        return isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE;
+    }
+    function isConcurrentMode(object) {
+        return typeOf(object) === REACT_CONCURRENT_MODE_TYPE;
+    }
+    function isContextConsumer(object) {
+        return typeOf(object) === REACT_CONTEXT_TYPE;
+    }
+    function isContextProvider(object) {
+        return typeOf(object) === REACT_PROVIDER_TYPE;
+    }
+    function isElement(object) {
+        return typeof object === "object" && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+    }
+    function isForwardRef(object) {
+        return typeOf(object) === REACT_FORWARD_REF_TYPE;
+    }
+    function isFragment(object) {
+        return typeOf(object) === REACT_FRAGMENT_TYPE;
+    }
+    function isLazy(object) {
+        return typeOf(object) === REACT_LAZY_TYPE;
+    }
+    function isMemo(object) {
+        return typeOf(object) === REACT_MEMO_TYPE;
+    }
+    function isPortal(object) {
+        return typeOf(object) === REACT_PORTAL_TYPE;
+    }
+    function isProfiler(object) {
+        return typeOf(object) === REACT_PROFILER_TYPE;
+    }
+    function isStrictMode(object) {
+        return typeOf(object) === REACT_STRICT_MODE_TYPE;
+    }
+    function isSuspense(object) {
+        return typeOf(object) === REACT_SUSPENSE_TYPE;
+    }
+    exports.AsyncMode = AsyncMode;
+    exports.ConcurrentMode = ConcurrentMode;
+    exports.ContextConsumer = ContextConsumer;
+    exports.ContextProvider = ContextProvider;
+    exports.Element = Element;
+    exports.ForwardRef = ForwardRef;
+    exports.Fragment = Fragment;
+    exports.Lazy = Lazy;
+    exports.Memo = Memo;
+    exports.Portal = Portal;
+    exports.Profiler = Profiler;
+    exports.StrictMode = StrictMode;
+    exports.Suspense = Suspense;
+    exports.isAsyncMode = isAsyncMode;
+    exports.isConcurrentMode = isConcurrentMode;
+    exports.isContextConsumer = isContextConsumer;
+    exports.isContextProvider = isContextProvider;
+    exports.isElement = isElement;
+    exports.isForwardRef = isForwardRef;
+    exports.isFragment = isFragment;
+    exports.isLazy = isLazy;
+    exports.isMemo = isMemo;
+    exports.isPortal = isPortal;
+    exports.isProfiler = isProfiler;
+    exports.isStrictMode = isStrictMode;
+    exports.isSuspense = isSuspense;
+    exports.isValidElementType = isValidElementType;
+    exports.typeOf = typeOf;
+})();
+
+},{}],"bBUgD":[function(require,module,exports) {
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */ "use strict";
+var ReactIs = require("c437388b089702c3");
+var assign = require("c067a60101d8520c");
+var ReactPropTypesSecret = require("74a0f89a70b9f3c2");
+var has = require("18441b11647bc78");
+var checkPropTypes = require("bec3f6ff89f0b072");
+var printWarning = function() {};
+printWarning = function(text) {
+    var message = "Warning: " + text;
+    if (typeof console !== "undefined") console.error(message);
+    try {
+        // --- Welcome to debugging React ---
+        // This error was thrown as a convenience so that you can use this stack
+        // to find the callsite that caused this warning to fire.
+        throw new Error(message);
+    } catch (x) {}
+};
+function emptyFunctionThatReturnsNull() {
+    return null;
+}
+module.exports = function(isValidElement, throwOnDirectAccess) {
+    /* global Symbol */ var ITERATOR_SYMBOL = typeof Symbol === "function" && Symbol.iterator;
+    var FAUX_ITERATOR_SYMBOL = "@@iterator"; // Before Symbol spec.
+    /**
+   * Returns the iterator method function contained on the iterable object.
+   *
+   * Be sure to invoke the function with the iterable as context:
+   *
+   *     var iteratorFn = getIteratorFn(myIterable);
+   *     if (iteratorFn) {
+   *       var iterator = iteratorFn.call(myIterable);
+   *       ...
+   *     }
+   *
+   * @param {?object} maybeIterable
+   * @return {?function}
+   */ function getIteratorFn(maybeIterable) {
+        var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
+        if (typeof iteratorFn === "function") return iteratorFn;
+    }
+    /**
+   * Collection of methods that allow declaration and validation of props that are
+   * supplied to React components. Example usage:
+   *
+   *   var Props = require('ReactPropTypes');
+   *   var MyArticle = React.createClass({
+   *     propTypes: {
+   *       // An optional string prop named "description".
+   *       description: Props.string,
+   *
+   *       // A required enum prop named "category".
+   *       category: Props.oneOf(['News','Photos']).isRequired,
+   *
+   *       // A prop named "dialog" that requires an instance of Dialog.
+   *       dialog: Props.instanceOf(Dialog).isRequired
+   *     },
+   *     render: function() { ... }
+   *   });
+   *
+   * A more formal specification of how these methods are used:
+   *
+   *   type := array|bool|func|object|number|string|oneOf([...])|instanceOf(...)
+   *   decl := ReactPropTypes.{type}(.isRequired)?
+   *
+   * Each and every declaration produces a function with the same signature. This
+   * allows the creation of custom validation functions. For example:
+   *
+   *  var MyLink = React.createClass({
+   *    propTypes: {
+   *      // An optional string or URI prop named "href".
+   *      href: function(props, propName, componentName) {
+   *        var propValue = props[propName];
+   *        if (propValue != null && typeof propValue !== 'string' &&
+   *            !(propValue instanceof URI)) {
+   *          return new Error(
+   *            'Expected a string or an URI for ' + propName + ' in ' +
+   *            componentName
+   *          );
+   *        }
+   *      }
+   *    },
+   *    render: function() {...}
+   *  });
+   *
+   * @internal
+   */ var ANONYMOUS = "<<anonymous>>";
+    // Important!
+    // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
+    var ReactPropTypes = {
+        array: createPrimitiveTypeChecker("array"),
+        bigint: createPrimitiveTypeChecker("bigint"),
+        bool: createPrimitiveTypeChecker("boolean"),
+        func: createPrimitiveTypeChecker("function"),
+        number: createPrimitiveTypeChecker("number"),
+        object: createPrimitiveTypeChecker("object"),
+        string: createPrimitiveTypeChecker("string"),
+        symbol: createPrimitiveTypeChecker("symbol"),
+        any: createAnyTypeChecker(),
+        arrayOf: createArrayOfTypeChecker,
+        element: createElementTypeChecker(),
+        elementType: createElementTypeTypeChecker(),
+        instanceOf: createInstanceTypeChecker,
+        node: createNodeChecker(),
+        objectOf: createObjectOfTypeChecker,
+        oneOf: createEnumTypeChecker,
+        oneOfType: createUnionTypeChecker,
+        shape: createShapeTypeChecker,
+        exact: createStrictShapeTypeChecker
+    };
+    /**
+   * inlined Object.is polyfill to avoid requiring consumers ship their own
+   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
+   */ /*eslint-disable no-self-compare*/ function is(x, y) {
+        // SameValue algorithm
+        if (x === y) // Steps 1-5, 7-10
+        // Steps 6.b-6.e: +0 != -0
+        return x !== 0 || 1 / x === 1 / y;
+        else // Step 6.a: NaN == NaN
+        return x !== x && y !== y;
+    }
+    /*eslint-enable no-self-compare*/ /**
+   * We use an Error-like object for backward compatibility as people may call
+   * PropTypes directly and inspect their output. However, we don't use real
+   * Errors anymore. We don't inspect their stack anyway, and creating them
+   * is prohibitively expensive if they are created too often, such as what
+   * happens in oneOfType() for any type before the one that matched.
+   */ function PropTypeError(message, data) {
+        this.message = message;
+        this.data = data && typeof data === "object" ? data : {};
+        this.stack = "";
+    }
+    // Make `instanceof Error` still work for returned errors.
+    PropTypeError.prototype = Error.prototype;
+    function createChainableTypeChecker(validate) {
+        var manualPropTypeCallCache = {};
+        var manualPropTypeWarningCount = 0;
+        function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
+            componentName = componentName || ANONYMOUS;
+            propFullName = propFullName || propName;
+            if (secret !== ReactPropTypesSecret) {
+                if (throwOnDirectAccess) {
+                    // New behavior only for users of `prop-types` package
+                    var err = new Error("Calling PropTypes validators directly is not supported by the `prop-types` package. Use `PropTypes.checkPropTypes()` to call them. Read more at http://fb.me/use-check-prop-types");
+                    err.name = "Invariant Violation";
+                    throw err;
+                } else if (typeof console !== "undefined") {
+                    // Old behavior for people using React.PropTypes
+                    var cacheKey = componentName + ":" + propName;
+                    if (!manualPropTypeCallCache[cacheKey] && // Avoid spamming the console because they are often not actionable except for lib authors
+                    manualPropTypeWarningCount < 3) {
+                        printWarning("You are manually calling a React.PropTypes validation function for the `" + propFullName + "` prop on `" + componentName + "`. This is deprecated " + "and will throw in the standalone `prop-types` package. " + "You may be seeing this warning due to a third-party PropTypes " + "library. See https://fb.me/react-warning-dont-call-proptypes " + "for details.");
+                        manualPropTypeCallCache[cacheKey] = true;
+                        manualPropTypeWarningCount++;
+                    }
+                }
+            }
+            if (props[propName] == null) {
+                if (isRequired) {
+                    if (props[propName] === null) return new PropTypeError("The " + location + " `" + propFullName + "` is marked as required " + ("in `" + componentName + "`, but its value is `null`."));
+                    return new PropTypeError("The " + location + " `" + propFullName + "` is marked as required in " + ("`" + componentName + "`, but its value is `undefined`."));
+                }
+                return null;
+            } else return validate(props, propName, componentName, location, propFullName);
+        }
+        var chainedCheckType = checkType.bind(null, false);
+        chainedCheckType.isRequired = checkType.bind(null, true);
+        return chainedCheckType;
+    }
+    function createPrimitiveTypeChecker(expectedType) {
+        function validate(props, propName, componentName, location, propFullName, secret) {
+            var propValue = props[propName];
+            var propType = getPropType(propValue);
+            if (propType !== expectedType) {
+                // `propValue` being instance of, say, date/regexp, pass the 'object'
+                // check, but we can offer a more precise error message here rather than
+                // 'of type `object`'.
+                var preciseType = getPreciseType(propValue);
+                return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type " + ("`" + preciseType + "` supplied to `" + componentName + "`, expected ") + ("`" + expectedType + "`."), {
+                    expectedType: expectedType
+                });
+            }
+            return null;
+        }
+        return createChainableTypeChecker(validate);
+    }
+    function createAnyTypeChecker() {
+        return createChainableTypeChecker(emptyFunctionThatReturnsNull);
+    }
+    function createArrayOfTypeChecker(typeChecker) {
+        function validate(props, propName, componentName, location, propFullName) {
+            if (typeof typeChecker !== "function") return new PropTypeError("Property `" + propFullName + "` of component `" + componentName + "` has invalid PropType notation inside arrayOf.");
+            var propValue = props[propName];
+            if (!Array.isArray(propValue)) {
+                var propType = getPropType(propValue);
+                return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type " + ("`" + propType + "` supplied to `" + componentName + "`, expected an array."));
+            }
+            for(var i = 0; i < propValue.length; i++){
+                var error = typeChecker(propValue, i, componentName, location, propFullName + "[" + i + "]", ReactPropTypesSecret);
+                if (error instanceof Error) return error;
+            }
+            return null;
+        }
+        return createChainableTypeChecker(validate);
+    }
+    function createElementTypeChecker() {
+        function validate(props, propName, componentName, location, propFullName) {
+            var propValue = props[propName];
+            if (!isValidElement(propValue)) {
+                var propType = getPropType(propValue);
+                return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type " + ("`" + propType + "` supplied to `" + componentName + "`, expected a single ReactElement."));
+            }
+            return null;
+        }
+        return createChainableTypeChecker(validate);
+    }
+    function createElementTypeTypeChecker() {
+        function validate(props, propName, componentName, location, propFullName) {
+            var propValue = props[propName];
+            if (!ReactIs.isValidElementType(propValue)) {
+                var propType = getPropType(propValue);
+                return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type " + ("`" + propType + "` supplied to `" + componentName + "`, expected a single ReactElement type."));
+            }
+            return null;
+        }
+        return createChainableTypeChecker(validate);
+    }
+    function createInstanceTypeChecker(expectedClass) {
+        function validate(props, propName, componentName, location, propFullName) {
+            if (!(props[propName] instanceof expectedClass)) {
+                var expectedClassName = expectedClass.name || ANONYMOUS;
+                var actualClassName = getClassName(props[propName]);
+                return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type " + ("`" + actualClassName + "` supplied to `" + componentName + "`, expected ") + ("instance of `" + expectedClassName + "`."));
+            }
+            return null;
+        }
+        return createChainableTypeChecker(validate);
+    }
+    function createEnumTypeChecker(expectedValues) {
+        if (!Array.isArray(expectedValues)) {
+            {
+                if (arguments.length > 1) printWarning("Invalid arguments supplied to oneOf, expected an array, got " + arguments.length + " arguments. " + "A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z]).");
+                else printWarning("Invalid argument supplied to oneOf, expected an array.");
+            }
+            return emptyFunctionThatReturnsNull;
+        }
+        function validate(props, propName, componentName, location, propFullName) {
+            var propValue = props[propName];
+            for(var i = 0; i < expectedValues.length; i++){
+                if (is(propValue, expectedValues[i])) return null;
+            }
+            var valuesString = JSON.stringify(expectedValues, function replacer(key, value) {
+                var type = getPreciseType(value);
+                if (type === "symbol") return String(value);
+                return value;
+            });
+            return new PropTypeError("Invalid " + location + " `" + propFullName + "` of value `" + String(propValue) + "` " + ("supplied to `" + componentName + "`, expected one of " + valuesString + "."));
+        }
+        return createChainableTypeChecker(validate);
+    }
+    function createObjectOfTypeChecker(typeChecker) {
+        function validate(props, propName, componentName, location, propFullName) {
+            if (typeof typeChecker !== "function") return new PropTypeError("Property `" + propFullName + "` of component `" + componentName + "` has invalid PropType notation inside objectOf.");
+            var propValue = props[propName];
+            var propType = getPropType(propValue);
+            if (propType !== "object") return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type " + ("`" + propType + "` supplied to `" + componentName + "`, expected an object."));
+            for(var key in propValue)if (has(propValue, key)) {
+                var error = typeChecker(propValue, key, componentName, location, propFullName + "." + key, ReactPropTypesSecret);
+                if (error instanceof Error) return error;
+            }
+            return null;
+        }
+        return createChainableTypeChecker(validate);
+    }
+    function createUnionTypeChecker(arrayOfTypeCheckers) {
+        if (!Array.isArray(arrayOfTypeCheckers)) {
+            printWarning("Invalid argument supplied to oneOfType, expected an instance of array.");
+            return emptyFunctionThatReturnsNull;
+        }
+        for(var i = 0; i < arrayOfTypeCheckers.length; i++){
+            var checker = arrayOfTypeCheckers[i];
+            if (typeof checker !== "function") {
+                printWarning("Invalid argument supplied to oneOfType. Expected an array of check functions, but received " + getPostfixForTypeWarning(checker) + " at index " + i + ".");
+                return emptyFunctionThatReturnsNull;
+            }
+        }
+        function validate(props, propName, componentName, location, propFullName) {
+            var expectedTypes = [];
+            for(var i = 0; i < arrayOfTypeCheckers.length; i++){
+                var checker = arrayOfTypeCheckers[i];
+                var checkerResult = checker(props, propName, componentName, location, propFullName, ReactPropTypesSecret);
+                if (checkerResult == null) return null;
+                if (checkerResult.data && has(checkerResult.data, "expectedType")) expectedTypes.push(checkerResult.data.expectedType);
+            }
+            var expectedTypesMessage = expectedTypes.length > 0 ? ", expected one of type [" + expectedTypes.join(", ") + "]" : "";
+            return new PropTypeError("Invalid " + location + " `" + propFullName + "` supplied to " + ("`" + componentName + "`" + expectedTypesMessage + "."));
+        }
+        return createChainableTypeChecker(validate);
+    }
+    function createNodeChecker() {
+        function validate(props, propName, componentName, location, propFullName) {
+            if (!isNode(props[propName])) return new PropTypeError("Invalid " + location + " `" + propFullName + "` supplied to " + ("`" + componentName + "`, expected a ReactNode."));
+            return null;
+        }
+        return createChainableTypeChecker(validate);
+    }
+    function invalidValidatorError(componentName, location, propFullName, key, type) {
+        return new PropTypeError((componentName || "React class") + ": " + location + " type `" + propFullName + "." + key + "` is invalid; " + "it must be a function, usually from the `prop-types` package, but received `" + type + "`.");
+    }
+    function createShapeTypeChecker(shapeTypes) {
+        function validate(props, propName, componentName, location, propFullName) {
+            var propValue = props[propName];
+            var propType = getPropType(propValue);
+            if (propType !== "object") return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type `" + propType + "` " + ("supplied to `" + componentName + "`, expected `object`."));
+            for(var key in shapeTypes){
+                var checker = shapeTypes[key];
+                if (typeof checker !== "function") return invalidValidatorError(componentName, location, propFullName, key, getPreciseType(checker));
+                var error = checker(propValue, key, componentName, location, propFullName + "." + key, ReactPropTypesSecret);
+                if (error) return error;
+            }
+            return null;
+        }
+        return createChainableTypeChecker(validate);
+    }
+    function createStrictShapeTypeChecker(shapeTypes) {
+        function validate(props, propName, componentName, location, propFullName) {
+            var propValue = props[propName];
+            var propType = getPropType(propValue);
+            if (propType !== "object") return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type `" + propType + "` " + ("supplied to `" + componentName + "`, expected `object`."));
+            // We need to check all keys in case some are required but missing from props.
+            var allKeys = assign({}, props[propName], shapeTypes);
+            for(var key in allKeys){
+                var checker = shapeTypes[key];
+                if (has(shapeTypes, key) && typeof checker !== "function") return invalidValidatorError(componentName, location, propFullName, key, getPreciseType(checker));
+                if (!checker) return new PropTypeError("Invalid " + location + " `" + propFullName + "` key `" + key + "` supplied to `" + componentName + "`." + "\nBad object: " + JSON.stringify(props[propName], null, "  ") + "\nValid keys: " + JSON.stringify(Object.keys(shapeTypes), null, "  "));
+                var error = checker(propValue, key, componentName, location, propFullName + "." + key, ReactPropTypesSecret);
+                if (error) return error;
+            }
+            return null;
+        }
+        return createChainableTypeChecker(validate);
+    }
+    function isNode(propValue) {
+        switch(typeof propValue){
+            case "number":
+            case "string":
+            case "undefined":
+                return true;
+            case "boolean":
+                return !propValue;
+            case "object":
+                if (Array.isArray(propValue)) return propValue.every(isNode);
+                if (propValue === null || isValidElement(propValue)) return true;
+                var iteratorFn = getIteratorFn(propValue);
+                if (iteratorFn) {
+                    var iterator = iteratorFn.call(propValue);
+                    var step;
+                    if (iteratorFn !== propValue.entries) while(!(step = iterator.next()).done){
+                        if (!isNode(step.value)) return false;
+                    }
+                    else // Iterator will provide entry [k,v] tuples rather than values.
+                    while(!(step = iterator.next()).done){
+                        var entry = step.value;
+                        if (entry) {
+                            if (!isNode(entry[1])) return false;
+                        }
+                    }
+                } else return false;
+                return true;
+            default:
+                return false;
+        }
+    }
+    function isSymbol(propType, propValue) {
+        // Native Symbol.
+        if (propType === "symbol") return true;
+        // falsy value can't be a Symbol
+        if (!propValue) return false;
+        // 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
+        if (propValue["@@toStringTag"] === "Symbol") return true;
+        // Fallback for non-spec compliant Symbols which are polyfilled.
+        if (typeof Symbol === "function" && propValue instanceof Symbol) return true;
+        return false;
+    }
+    // Equivalent of `typeof` but with special handling for array and regexp.
+    function getPropType(propValue) {
+        var propType = typeof propValue;
+        if (Array.isArray(propValue)) return "array";
+        if (propValue instanceof RegExp) // Old webkits (at least until Android 4.0) return 'function' rather than
+        // 'object' for typeof a RegExp. We'll normalize this here so that /bla/
+        // passes PropTypes.object.
+        return "object";
+        if (isSymbol(propType, propValue)) return "symbol";
+        return propType;
+    }
+    // This handles more types than `getPropType`. Only used for error messages.
+    // See `createPrimitiveTypeChecker`.
+    function getPreciseType(propValue) {
+        if (typeof propValue === "undefined" || propValue === null) return "" + propValue;
+        var propType = getPropType(propValue);
+        if (propType === "object") {
+            if (propValue instanceof Date) return "date";
+            else if (propValue instanceof RegExp) return "regexp";
+        }
+        return propType;
+    }
+    // Returns a string that is postfixed to a warning about an invalid type.
+    // For example, "undefined" or "of type array"
+    function getPostfixForTypeWarning(value) {
+        var type = getPreciseType(value);
+        switch(type){
+            case "array":
+            case "object":
+                return "an " + type;
+            case "boolean":
+            case "date":
+            case "regexp":
+                return "a " + type;
+            default:
+                return type;
+        }
+    }
+    // Returns class name of the object, if any.
+    function getClassName(propValue) {
+        if (!propValue.constructor || !propValue.constructor.name) return ANONYMOUS;
+        return propValue.constructor.name;
+    }
+    ReactPropTypes.checkPropTypes = checkPropTypes;
+    ReactPropTypes.resetWarningCache = checkPropTypes.resetWarningCache;
+    ReactPropTypes.PropTypes = ReactPropTypes;
+    return ReactPropTypes;
+};
+
+},{"c437388b089702c3":"7EuwB","c067a60101d8520c":"7OXxh","74a0f89a70b9f3c2":"jZTZJ","18441b11647bc78":"fqKuf","bec3f6ff89f0b072":"5VwyJ"}],"7OXxh":[function(require,module,exports) {
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/ "use strict";
+/* eslint-disable no-unused-vars */ var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+function toObject(val) {
+    if (val === null || val === undefined) throw new TypeError("Object.assign cannot be called with null or undefined");
+    return Object(val);
+}
+function shouldUseNative() {
+    try {
+        if (!Object.assign) return false;
+        // Detect buggy property enumeration order in older V8 versions.
+        // https://bugs.chromium.org/p/v8/issues/detail?id=4118
+        var test1 = new String("abc"); // eslint-disable-line no-new-wrappers
+        test1[5] = "de";
+        if (Object.getOwnPropertyNames(test1)[0] === "5") return false;
+        // https://bugs.chromium.org/p/v8/issues/detail?id=3056
+        var test2 = {};
+        for(var i = 0; i < 10; i++)test2["_" + String.fromCharCode(i)] = i;
+        var order2 = Object.getOwnPropertyNames(test2).map(function(n) {
+            return test2[n];
+        });
+        if (order2.join("") !== "0123456789") return false;
+        // https://bugs.chromium.org/p/v8/issues/detail?id=3056
+        var test3 = {};
+        "abcdefghijklmnopqrst".split("").forEach(function(letter) {
+            test3[letter] = letter;
+        });
+        if (Object.keys(Object.assign({}, test3)).join("") !== "abcdefghijklmnopqrst") return false;
+        return true;
+    } catch (err) {
+        // We don't expect any of the above to throw, but better to be safe.
+        return false;
+    }
+}
+module.exports = shouldUseNative() ? Object.assign : function(target, source) {
+    var from;
+    var to = toObject(target);
+    var symbols;
+    for(var s = 1; s < arguments.length; s++){
+        from = Object(arguments[s]);
+        for(var key in from)if (hasOwnProperty.call(from, key)) to[key] = from[key];
+        if (getOwnPropertySymbols) {
+            symbols = getOwnPropertySymbols(from);
+            for(var i = 0; i < symbols.length; i++)if (propIsEnumerable.call(from, symbols[i])) to[symbols[i]] = from[symbols[i]];
+        }
+    }
+    return to;
+};
+
+},{}],"jZTZJ":[function(require,module,exports) {
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */ "use strict";
+var ReactPropTypesSecret = "SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED";
+module.exports = ReactPropTypesSecret;
+
+},{}],"fqKuf":[function(require,module,exports) {
+module.exports = Function.call.bind(Object.prototype.hasOwnProperty);
+
+},{}],"5VwyJ":[function(require,module,exports) {
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */ "use strict";
+var printWarning = function() {};
+var ReactPropTypesSecret = require("24ba1e58d167a82c");
+var loggedTypeFailures = {};
+var has = require("898bc82f39d83f7c");
+printWarning = function(text) {
+    var message = "Warning: " + text;
+    if (typeof console !== "undefined") console.error(message);
+    try {
+        // --- Welcome to debugging React ---
+        // This error was thrown as a convenience so that you can use this stack
+        // to find the callsite that caused this warning to fire.
+        throw new Error(message);
+    } catch (x) {}
+};
+/**
+ * Assert that the values match with the type specs.
+ * Error messages are memorized and will only be shown once.
+ *
+ * @param {object} typeSpecs Map of name to a ReactPropType
+ * @param {object} values Runtime values that need to be type-checked
+ * @param {string} location e.g. "prop", "context", "child context"
+ * @param {string} componentName Name of the component for error messages.
+ * @param {?Function} getStack Returns the component stack.
+ * @private
+ */ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
+    for(var typeSpecName in typeSpecs)if (has(typeSpecs, typeSpecName)) {
+        var error;
+        // Prop type validation may throw. In case they do, we don't want to
+        // fail the render phase where it didn't fail before. So we log it.
+        // After these have been cleaned up, we'll let them throw.
+        try {
+            // This is intentionally an invariant that gets caught. It's the same
+            // behavior as without this statement except with a better message.
+            if (typeof typeSpecs[typeSpecName] !== "function") {
+                var err = Error((componentName || "React class") + ": " + location + " type `" + typeSpecName + "` is invalid; " + "it must be a function, usually from the `prop-types` package, but received `" + typeof typeSpecs[typeSpecName] + "`." + "This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.");
+                err.name = "Invariant Violation";
+                throw err;
+            }
+            error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret);
+        } catch (ex) {
+            error = ex;
+        }
+        if (error && !(error instanceof Error)) printWarning((componentName || "React class") + ": type specification of " + location + " `" + typeSpecName + "` is invalid; the type checker " + "function must return `null` or an `Error` but returned a " + typeof error + ". " + "You may have forgotten to pass an argument to the type checker " + "creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and " + "shape all require an argument).");
+        if (error instanceof Error && !(error.message in loggedTypeFailures)) {
+            // Only monitor this failure once because there tends to be a lot of the
+            // same error.
+            loggedTypeFailures[error.message] = true;
+            var stack = getStack ? getStack() : "";
+            printWarning("Failed " + location + " type: " + error.message + (stack != null ? stack : ""));
+        }
+    }
+}
+/**
+ * Resets warning cache when testing.
+ *
+ * @private
+ */ checkPropTypes.resetWarningCache = function() {
+    loggedTypeFailures = {};
+};
+module.exports = checkPropTypes;
+
+},{"24ba1e58d167a82c":"jZTZJ","898bc82f39d83f7c":"fqKuf"}],"6ngmn":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"gAMAS":[function(require,module,exports) {
 "use strict";
 var Refresh = require("55a07972f072df0f");
 function debounce(func, delay) {
@@ -27298,155 +28225,7 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"55a07972f072df0f":"5noxb"}],"4gflv":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$f7a6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$f7a6.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "MainView", ()=>MainView);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _movieCard = require("../movie-card/movie-card");
-var _movieView = require("../movie-view/movie-view");
-var _s = $RefreshSig$();
-const MainView = ()=>{
-    _s();
-    const [movies, setMovies] = (0, _react.useState)([
-        {
-            id: 1,
-            title: "Spirited Away",
-            description: "During her family's move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits, and where humans are changed into beasts.",
-            image: "data:image/jpeg;base64,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",
-            genre: "Fantasy",
-            director: "Hayao Miyazaki"
-        },
-        {
-            id: 2,
-            title: "Godzilla",
-            description: "American nuclear weapons testing results in the creation of a seemingly unstoppable dinosaur-like beast.",
-            image: "data:image/jpeg;base64,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",
-            genre: "Horror",
-            director: "Ishiro Honda"
-        },
-        {
-            id: 3,
-            title: "One Piece Film Red",
-            description: "For the first time ever, Uta - the most beloved singer in the world - will reveal herself to the world at a live concert. The voice that the whole world has been waiting for is about to resound.",
-            image: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAKwAtwMBIgACEQEDEQH/xAAcAAACAgMBAQAAAAAAAAAAAAAFBgQHAAIDAQj/xABBEAACAQIEBAQEAggDCAMBAAABAgMEEQAFEiEGMUFREyJhcRQygZFCoQcVI1JiscHwJHLRM0NTgpKiwuEWNLJE/8QAGgEAAgMBAQAAAAAAAAAAAAAAAwQBAgUABv/EAC0RAAICAQQCAQMDAwUAAAAAAAECAAMRBBIhMRNBUQUUImGBoSOx8DIzcZHB/9oADAMBAAIRAxEAPwCaksxmWR3UwD9oVC6fFVd79Abmy+mrBfJENZUyGOZZY1XUZAbF22/IH++WNM+yZI6R5IrqiqFfTudAN7D62P0xwyuvkyfRqRBTvZSoP7S2+/vv7/0uxGzHuZttLae8bv8AT3IuaUM9LPLDL5wUBkdrkSXG+x/05Y3bIq5+HXqsjqqlp4zrMEUlnKkbqpBudtJsb8sNGaU6ZpRh6c3dRqiJBv6gj19cS+ElaPxPHVA5fRsNJspPMf8Ar3xBIZdpg/tQt2QeDzBvC854h/Ru9IxLzimmopATdgwBUXv1sV++A1DkWUwUEcFPl1M0GgC8kKtqHckjc++G3Mc7y/LeJYKQyBWqlCVAX5Ua/wCzLepJ0/Vb2FsanKKZaoUsNBB4YN1lkoFkCj/NqA25AEX98VQlept1kVj8hPOB6aKhyyehpkKU1POwiXc6AwDkd7XZjbpe2DNfQ01ZGy1FPBN5SFMkYax+owKqs7yLhqn8Coq4ldT/ALFbM7N18q8vyGE3P/0g1NbG0eUxvSwtzlf/AGjD0/d99z2IxdandsiKanV1VAkyvMuzbMcuZ0aeYsYWhbXIWCXFiQCbX9fXFg8KcU1lRk/wCO8mYISQ7HUX5Hre/UYrSubXXMiEtJcC3cEfy9cFMioK8V8dTHeFIJA4lJ6g7he/LAatOUtwi5BmZddmsMWxCXEJ4lzqukDRTs0cTRsWjEaqlwxF7AcwD9MPlJwt8H+jv9XmQPOkRnDpuPELF9vTe3tgZSxSS+OZWYSzESxsTuW98PWSzo2Sw+IRpQGN78gMNPQtB/GW+n6trtyn4lWQFkycBmvLTNqCn8SEhiPoRf7YCVjNHmIqKQ2DMJV2635ffBjOWGXZosBIaLxmjfvbVZh9sDJYHFPUx6itXQuSf411cx2I5+xwdNNnDZmavlP+5I9M8beNECyRSxsmnnpI3X7HT+eJuQxrDXQGQWEikMOliCMZVKklfG9OQom5C22vqPvtiPTuIZqcxEX8cDc9iDf88G8O9SBxODncMTrDRQQS1ElW11hmEQHVgN2P2sPdsZW5nVGmkSM6KitkJlYdEtYKP4bfl3xKkpDNUyqp8viah6kgDHQ5RJK91RmZtltzt6euLeIMAWhH31DIEG0NVI1OMqjklWieRDO4NiyD8I7bkn6LzscWZwPwoaQNm2bx68xmbVHE+4p0ubADodz7X27nbhHg2LLylZWoDOCWSM8l9T64c+f9cI3OCcLNPSUnbucTnMiSRFHUFGFiCNrdsVFVQ+DWTIo2VmVf6YtXNasUWXzVBGplU6FAvqfoPe+K5qaOoYg1LK0shtZRcA7dtvYYtp8ANmLfVay5UqPcZMoUUuR0zzEKQgYm1gLnGYjcVeJBky0sCOzsyr5VJsFt29se4XC7uY5Zq/t8V/AE6rXwTZtPlcyftBCHS/8AvVIsfaxwDzCk8CVvi5ZwLjQIrnWAOvbbVfHnGVFW66PNcvVzPT+WTQN7DcN6jc/f3tmV8ST52jwLkEtdJELyeARpB9dWyn0uTg/jUqHjmsTzMamOD6Mn8LTxQVKxu2qkb/Ztp2B+vTv7fXG3E3G1JS+J+p9Hjop11cg/Zxr3A/Fv9L97acKuY1dbPllbXQ5fLFl0AJmSKPfbnqvYnruw07fL1wkLJLnreJULpow10pY21F2NrardTcevQWxUL5H/AA4hKNOmkp/rNuPoCPvAOVf/ACDNf15nYc5aj6qVapbmrlP+8fpYXNu5Pphl4mp6iKoemSqqBA3nRPjZVsvLc6uXUC/piDFQZvwll1PX5lUrPRFhFUU483wqnZSGJ6HYgbC9h3wKzyvrp5H8Z9ISLVBErDSIyDoIYbsDbvbnsLWwWqrc+AcxD6peWo3ZIP8AaAjlU6zyLR0s06lyEljiZtYvtva/Ln2wy5HwHmVcVlzEmhg52JDSMPQfh9z9sT8g4g/UGR1FBIkjZjHUOFElmU8hckHfvt+WDnDcudZ3GZ8zmjTLnFgscWky+xvsv874u72quegP5iNGnod8E5P8CAK/I6aiyLMapgiZfTazQjVqM7kALI552DE26H5uQGO3DlFQTZJDA00TzIoBYAh0bmQyn1J5+pHpC41z6POcwjy6hINFStqZl5SvuNu4B29fN6HHfIHioKE5kaWWtkmsiLCNlF72Lche2o23tbbbFSjpUGzyTLWGq27xgZAEPUOSTTqRIfCgRtpLCzD0HTDBllPQQ05WjeOVC13bXr3wgcQ5tUZ3RJBUU3gMkwKU8b60ZdJuzXsSb2AFtufcBePxGWS+NEJKWXT88fkLL226Ht9cSunaxTuMr9zTpGGxc8dy2K/LMgzCTwauloZZf3WVdY9uowv5z+j6jq52qcvq5aWY81bzof69+p54TAwv0wXyziLN6d/DhnM6XtolGoffn+eLeCysblaLr9VqtbbZX/1AmbcMZzk0cwkpHnhWQSQzUwMgUg9QNxt3GNeGYYMwrKnxoFkdUVtDJcqSDfbmOmLLpM7rZqcNLSR6tvMJSFP5G/8AL1x4M+kKOY5KRyg/aBAWI9NmJv8AQ4Us+rpg1tyf0m1pdCEsFwHHwYuUHDWYVOYu3gilpQQdbm19ui8+eGKjfJsoqYqaJzU17to8g1MO/oowvZlmeZZszxiqSGLrGrWVbWvqf/U27Xwz8NcPwZRAshKy1DDeUfKo7L6evXBHf8cs3PxAHUvqLj40wo9+v2h/kNh169ceE2uTsB1PLGO6ohdmAUcydrYXs1zF6wmCnBEY2Nub8u312wBVJMZsuWtczlm+YrMxC30Jstja57k/lgHRySV2fUkZusaNrYDrscR6rNJqZjHLRPcHYa7Gw9CMHeGYEfN5pdJ0pGdyOpw74/GmZhG5r71GfcEcW5mIsxWBWuqL5lXucZhdzudarNKqe4s8htbtfGYtXR+PUW1Otd7SRGODM6yugqK85SKmjpWQNGWEgK3vIbc2YLpsALbnmbYIwrDM1GcnlVJKWQSUkiG0dZDpuUf106gGPIi/7wwu1FZmdBk1Pm+U1DUuV0sgihSWxarYkh5JFHIXBAH8rYOUGWRz1f63anbLpqiACamp5Sl72Yl7W32HK3W5bomFOM5nqb9QptbjE1apoZKnNVEtLDVyRSLJTzOqNJC5byOCfmBJZST+MjYbgDWS01ZLkWYxS08jQ1aopafSzRq9yr6txbT4gB5Kzfui7Ma2loE1U8dLTQblppWEQPUkADe++5t33BxFrsxpcxy9JJFoK+gcN4smsSoNJA3Ow5kC+53HLAEvrNm1TOIsIztheLPcszvJ6sV7w01MCYTLJLaNzbmjOFvbbpzxWjPSQ1bUlLXwzpBqSLwpw6lSQbrY7D06XGBme0HCsGbzPTyVtZEBtFrsq89g5BYjfltbucMH6L4uFjxA3g5W8GZGM/DSSzeIot82m/J7dd9gdxyL9Vgq5HMS1GnOoGCSP/Yx8O8LahHWZ6pEbG0dMw8z9BrHT/Lz77XGM414keVzkmSk2+SeVNrD9xe3qfptjTjPivwpHpqB/wBsAU8QNfwl5MQf3m5X6AXHzYRq2d6WljpYW0z1QDM1/kT099vfb1GCDJHms/YQIAB8FHvszebMqbLEeClSKacWEjyXMSX5C1t+XUb2O2I9dPU5m2rMa6pqzzUGTSg9h0H97YjVb09LRiNlJhN1Ed92Y779ztufT02EaZJIHY6khHNVdtJJ6E9frhV7Gc5aaNVCVDAEIVNNBEgNgQu7rrOoj73+v9iTTT1NFFajnMlOxu1LJ5o39h0PqLY45ZHl2V0KVtVSRVdROT8LTMPIqjYySAfNcggL1sfSzJlOdZtW8OZrJS6Z66JkEdNDCq6Ij8xUAb383flhR9QycqOIdaUfg+5pSzrW0nxNNr0a7Mrm7xNsdLbb9bG247EEBtyDLLovk1SsdIv327drfkedr4TeGMmzNa2GWKmkSORAlSKqNlVhzvYgEsDuB9Da+GfNeNqPhWhFelI1egqPgbrJp3VdUl23FwNI9TflbHarVtqFWhT32RENL9Kr097XHr0P1kT9IfDfEEVFLXfrMVdClzLSxIYvCXuRc6x3JI72tgZ+jepg8CroSEMxmjqERmt4qqQSB9vpe+GfjPiXiGLO8ipsmyw1mUZnCvxCNAxLBzZgzD5LIwO/Le+2K+zPIZE4ur8qyVXdKee0bkn9mNju3oTbubdScVbTqa9i8TSDsW55llZpNEqRw0dMlMSumOABdZUldTGxsCbAA3O5ueoBPhKWeEGjqyAxj1hVJsu+4A6DzDb+E++AORZOmUx+FG0k1dKR40zeZmYjlfvbkL2A9Lkw6fiY0D5lmLgTJS17U8IDWD2itp1dtd2v23xADVDcTkkiNMiLV41GDLGr2pI6Z6nMHSOnhGpmkbyAdz3wr0f6Qcsmzuly6CkdaSdxElUSFAcjy3S1wGNgDe9yLgYQc/4ozLiGSOnrfCjgpzraKEEB5De2oEkmwvty3wr5xmfgMsNG161HSVNO4iKsG1N9QMMZJ6iZrCnmfQnEtLBUZPUvMoDRxlkYjdWttY/lhVy1AI1sLEdtrYTP0ncbNnlPHlVMJKajaOKd2U7ykgMoP8Ivy779LYGfo64pq4szgy3MJTPSzEJE7m5jbkLHtewxo0qwrw3uY2qpD2CxfXctSfKKWuXVLTRybi7EAG/vjMeZ3nS5FlD17U7z6HVFjQgE39T6YzFMW+py11Y5AifQiVv0M5USdX+JZ5C3YyyWP/UVw5Gp/WOStNSgsJoLhQdz3X35jEXM46PLuAXoPCWJGheKCEblJGJZR/ytv/y4WeC82+HY5fUmySk+GSbaH6j69PX3xCVGyor/AJzL6u1VvDA+prSQFOMngjyoy0lRU/F/GiIGNV8HSVJP4vEUHv1xFkqhBmeTcP8Ajj4en1Us0CpZw2nQpLciTewtyt3JwxcW5jluW0harTxKmVwY4oiBI9iN79Bta5v1FjywgZjmEmYQVEk1Q1K6y/ER0qxEgzE2vqtdTo68iVPI4zKdL4XPPofxNMX+VQcYgiSKSnmeBvmidkb1INj/ACxN4fmamz7L5YmKsKhVDfuhjpP5E47cQgVU8OawD9nWx6nC/gmWwkH339jgXFIYpo5F5oysPcG+GxKuMiGUqoP17T5fOzMZGvIV3CDufp+XvjRp5M0qpq3U0YZzoAt5R0HsOWJWcx0CCuzymqYWEVPIsek+ZvE8qhlPmBu1+XfAbL8zhfLgyalkRDdbXBYe2GNVYWOM8CJ6CtQN2MEzmSaqr/ayXVLoHC9L7kfYe9hjrUyGaJVjGlBe0Vtx9Op/94G0tTA6LHDKC1rab+bElNCsoZS0eoFwpsbDt2PvhYR4xj4Ufh3M5p6LPI5VrIUUoxlKo0e3LTaxB53vzv3wV4h4a/VMEWZcNmq8RXFzFIWYKQBtYXIvYc+vblHXg2izCKlzfhnMWSpju6R1qhlboyOFAIHQ8+eGPLJaNaaWjSs+Ama6SUdTJdoXt/u2uD1uCD2PPFCMjmaKVZr579GIFRxLnVVTtBPmUzQsLEIqrcdiVANsTOE+IZsslTLpaeiqcvqaiNmirgDHG9wviAnlba/oBgnTcKUeUMajOaxKuCxWNoomC6upIub+wJ5nthezjOafKczkiy2lSGNmYpLGDqZSSBpZjccvw232N7HEKqICAMQH2743ucCWzmGaU6x1sOWO2XyVVQxqKiNgJNSsFDDUCPMijfa21rnkrnPctyeIUGSQPUVMkmkRw3MkkjfvMd9V9rm7b8l54QY86zGqjklgoXanhBaR2k8oHcmw/rglwpxQlJm8NZTxIlWlxolQHWp+YA9NttuX3xYbcdwmVUYrHMtLMquTg/g6asr5Yv11UKyxLGLBHb8K33IXmSSbkHuBhSy/JqmegyWioq6ko1hgNfLU1Pmuzg20jkWVSwueQIPa2tLS5r+kniQ1NYrw5bTtpYr8sSfuIerHa5+vLSMGIpMtz7OqnJsmSqeKlQ+FNT+HoKLYW1N0BNgRbb2BK14OQcZ5gVOcgnmI+ZwVlLRRZoVMsdcupaoHVctvdrjnz2P54l5BkWXVOURtLBKsjMdchchnIY7jp05kXwYp6qDOJc7jWIxZXleXtBHGDcM5kAVu25Rrfe+InDbrDSyUUjuKimN5kkFtF7nbuOt8EpLlfznWYJ4kHiXhk1dPHJQFvEpkWMpe5Me+k/Q7fbvheoKGTL66GS+8E6SAexv/AExZtFIUqoCliGfwyun5g3lI+o2/vdZzyjlfN6j4WnkMcjfszp57AfzvjV01uVKn1FfttzEeo1fpER5uGJUjF2jlRhc9L2/rj3HeulFXlxjdSS6KWUjfmDj3F0fAi9mlbdwISzqmp6qjMtVTjUpGkRuSzcht3/8AXthHzKGmSraXQI6WnTURfdjcWF+/r6HnbDFxXmrZXlsMiEvNJKI9Tn5gRvf8sJmc1JqDQ0x2Mn+ImC7eyn6DY/xHECzx05mW2kZ9WqnrHM4TzTVtS1bWEvO421fgXkB72xBq6n4WqglgcieMhxpHygbi/Xny649qoEpomlikkjYKSNLXuenP3wr509UoEqSv4ZYl2B3v79sZ2cnM3goAwISqPifiJahr1UcshZrW8RCTc7ciPbt6WxuCHAKkEHcEG98CMpzX5YKg7/hkJ5+/+uDMnhzKfGiDdS6MyMfXykX9zc4kTjMpoDWTR0yKrtLII0UkWLE/lvibmPCVFSnVUyPHqV7T07hlJBty9DtbY4F01HS07t4PxIDc1MwIPr8uCFRmNVUiATzPIIRaLxWLW+/988V5MlT8RRrMtqKdtQ/ar0eO/wDLpjKTNZ4Dpc+Kg6Hn98Mk9flbSMwf4eR5rCKFdaRx26EsTe/Tt1wQy2Siemkep+LjApBJGKVR5pWsR4h/d3A/ljsScQrwhPlklEFrcwWnEsgeNg/hyQSWO+4sQQvc2stwNsOVVW5PDG1ZRV+UmuYKGq6ioj1ADa5PPYDkLDFdrl8Oa1kNFk801XWGlWSSGZSNMh5qOygEG5/O+CD/AKO8/paKSV4qHSP9zFITz6cv5DFWYDuOVXOqgQL+kDieKsIy3KKpqiIHVU1pJvUOOQW/JR0AsP5l+yDhHKuIspgr3czxmmjp4oo2H7NFA12J/EQAD1HntvviqYOEs9qKsQ0+WzShrNqXzRqt7XYjkB22OLg4arSuikikMQEviKttII02K27jyn6E7WvgNj4InKHsDMexOtXwnDxBHS0jVK0WSQoki0FChjMxPJ3Zt7G22224vcGyxxlwhBkXCtZmKqErZamJYY0P/wBeINcIp6na7N1Ptc2bmAZlRlGmR7K7lizSJz0KwGrc7ctgTiov0ocU0s0tPkWXgSvAdNXMJA7SuNgNQAu25ubW3tiFyTKFgADNYePMwr8jo+FMko6gOUIqHiHnlLEtpBuNKC+56+gvc9VZtQcBcMvltHI8/EmaWDvAu8Sn930G4Xu1z7JlLnk2SURp8poqWieX56i5llY9Ls235YgZVmTUOcpmM7SysWYyknU8ux6nn054PAe8x7yDRS5U+VtIscnjJUVy6uoF4o78iq7MSLjVtc74my0FNPXRTTxI08N2VwtjuCpU+ljywDzdchz2mFRLWrC1Mql2AFxqtYNtvbkADsb4YKGKCGlpxTuZI9C6ZGfUZNhYk9b4tCATnXsywNT0bkVtQSlIurfxDyNugB3J6AE4B5+I5M1rGgkXw2lOkBeQv0xBzzNn/wDllE+XrHVyUbgRQKp80hPmUn1sPa3vjTMKiFMwqFgcPEsjAHuL4a0vZl0BJ4kx6iX4dYyVIG3LGYGmqUp1xmG8CHGmc84jR+kGbX+q4yTbU7D7LgDWMRnhjO4jp41v66FP8jghx3IWqqFBfUkbnl62/pgNxLUx0+aUFVVxslPWUaMzW5SINFiOfJU+/rhe/ikTFrT+uzH4m+ataFRe4Lc+/wDf9MRpY4TSRxSMqsigksNm1b2PsLYypiianSannMqFujXAxxmfUwZTsUUcr8lthIRkwRW5CGJeldF7KWuP9R9sbZbDmkbBDF4sKkA6WGyntvgiB5rAWPcYYuEPhlapNQKYtptD8WxEWq4+a38Oq2O6k4zF+aKWBgrxm5HMEbenO/5YG1NFU1QPxFXpj/4aLsfr1+uGLP2hfNJfhARShz4Wrotzbnv254DVlUKZRtrlf/ZoN74mdjEgVFPQZbFqdGllOyhm5/bDDSmsGWV60lWtHFJHFFMX2iYC1g3X8JsACfpfAGkyypq6lZKnU8ruBHH1YnkPT2xvxBXo0sdDTODTUxPm6SyW8z/0HoBip4hak3cnqWl+jXLxRZRnNdVVkNVmlUu1TrJBTTZfmAIs17m1th2wx0TVfEdKKuiq44qETao45Q0rOUP4gCNri9iW2tywk0lbPU8HJUhKZYdKpP8AsvMkYcqdLDfSdO47MbWti1okigmEEUUcSOl0Ea2+UW5dgLfQdLYXs4GYchQ+0epHaipoZlrxHGjA3ZoltdStjcjmvW5wH4l4dE0sdblxWKQOqygNpUb7OLciOZ9Ln3Po0cUktPKV0FTIoJ/B1H0J7cmAwkVdNXZrVz0lJU+PS0xKwvO5CIDyvzJte19z12uMLNiHqBz3JnGkNSeCq5qAT1NbIfBjSO+p102Zio62Jb6DFG0+QZvHSw10eW1DxvIViKxliXU2tYbjcW3HQgb4vni6rnpvgYVYLUI4tIDYyNuUUXHzEhuvbuBgbwoEr2qM0qZVkgEnihmciPXe5a/IEWFr97YMLGA6gft8pvJlGU81S1Q6+aSRzbQRzP8AYwUFNUx0sU9Smjxb2v8A32GJnFo/XPFWZV9MgEMkoKFlVRIAALnT1JFz74NUWdrUQ1SZxQCZqi3i6HCi6tqBBF7Dlt/pfDQzFQsVb/ML235369Nv7/rhoy3ihct4fSmi1zVaeVVlB0KCSe+4A26Y55jktLV5c+Y5c8URjnUSUytZUiP4xc3NmIW3Tn2woCR5qxIBp06rnSO2/wDTEzujiMkEnhSDPKpgJXkd4KeIEa3/AHz2W5PuQffAf4krJff2wS4jSZq/4cHUKaNYTY/iUAN/3XP1wHdG1nbliVtx1NYUbFA+P7wgs+pNsZiErGMAPcXF8ZgRtbMeS4BcGWbnuayUmZQ0OXtGjqg+Il8NWJFr2F72t/P6YAZxE2aQp+s6iapWBW8PxnLaL87WI7DHOjnatr6+sezM0hF+mo+Y/wDjjbNHKUwXkHO+DFmJ5nmcAEmLiZUiFmgq5oSx3AQMP5i/1xKShzqPL5K5YoauliazMj2dLnYMOf5Wx0GCGQ5kcprxIV8SmlBSphsNLoeYtyNun16E3jEiAnzLwtqqjqIPV4yR+dsHuFa/Lp55lqNTDw9UKlZArv0BKi42ufcYzPqBcrzR4YJNdM6iSFr/ADIwuP8AT6YzIIPi82p6cttIwQvYErcgE262uccZI7nbiSmhWsaakmXw206UBZtJte1yB1v9LYCpAqSalQs5/Fa5wz8VUcdLTU0iQz0vixiV4aprvEAWW5NhYHY7jAnK6QSVME08hip2lUI6gapGBt5b3GxO5IIGIJwIRK2sbCiFJuFs3yzLqitkSPxzEVhjV7lS3zX7HTe1u/O4F6zIOvzC19ufTF61Odyit8CvERUNZI4mIdm0K2rT1+cCy789jtZZzXhTJ1qGzKb4lqaUhv8ADAFVv1P3G3tbnYJUXPsLWR80fiFjjwLkUtTw/AlDVRwjwk1k7umpSTYWt8zNYnqORtgjmtfV5PSU+XCklkqImVYpbahZR1tuSVBHYi++NuFY6imhSTK4xKkQClPEsZktZTvbfYe1/u1NRyZg6vXgLGtyKdTcf8x6+3L3wcgOsTazbaW7lfClzriWoWWZTCnmVGYFVQcmsOZPQj+mO9HkGcZVlFUKjOKCCoaXxHWKIlVh2BAJ3uVBPLmAB6vmYy0tNTrHIkOlbaFZRZbbcv5AbnCpmC1TeF8NH4Yma66luX7EAcz2C8ufRbgNWDxCHUM4x1K849rav4uBZJpRJ4hlsZL+Hy0i/odQ2tvfvgNHX1GT5pFm9Fpajr7ialkuYlm/EpW++51D3/hOCfGWUZhUZ0Gjpp5AqWOvZj5j079eXMnAymiam8WjzCnkEUoXxEN1ZCN1dQfxD8/rgwIUAGanhN1IVR/xMyyWdadlopMriqQ4vLWBC+m34RKdOnncqL/bHudS001crUgjCmKMStChWJptPnKKeS35Cw9umNZspq49Rp1eqhINpIFvt/Eu5U++OK0VY4vHRVMhvvpiY2Pvg2RMdqrFOCILziZY6QoxBWZluBaxA3/LGcJUuieXNp4wYaVdYDcma/lH1O3sG7YIycN+JOk+bzrDGuywRkO7D1tt9yMEJWQU8VPSq0FNF8qAi5JFrsbc/sOlhgT2gdTQ0X0621g7jCiLbVDvMzvYsW1E9Sb7nG8qMxZlAt6nBd40aJ1ZNeoWJsL2+nXAisopkVjE3ix2uelr8vy3wMPmaV1bouTzIlU4DKB5tItjzHjQ6tlI1czfa2MxeZx3Exno6VpqKGRJGQsoNh0vt97Y4ZhG1NpEsuoH5dTWwNzCDM8lkeeheU5ZIxaGUjXGATspvcBuhB/lviHVZhUZjRl6oKTBKCulOYIIP56cHzMp1ZDhhgwt4sf/ABE/6hjzxorW8WO3+cYT9IuRYbHHSOCSZ1SJGdzyULcn6dcdmDjPJmFMgBepV7Dlq1W7D6Y4R57omHwVOZZDy1GwJ9hufyxwh4bmiAfNpo6BbatEhvKR6IN/+q2CdHVUVFdMljMT8jUyG8z+3RB7b+uKlsRujSPY3xJb/Ef/AGc/qGqKo7rRhrBD0Mh6e27eoxDTMJXzSGrlcM8TqVRVsqgG4UDoMbVCXBZtTX3NjufrjjDDGN1Jv6nC5cmb9eiFJCpH3Nsui4kGX1tFMC0TqXUmxYAKDy3vZR023v0uQjhrqerqHaqp1oprFmeQFkYr+Feeo3O3I8+pvX8ElRSxk0tRLEDzVW2PuOuLCyCB0ggWoZ6mqULJEhXYseZP7u9t/wCE98K2bq1BDYEDqKmqT9JAi4kzHh3OJaity2T9U1TgwAWYxqFCW52KkAXF7gn7u+WcZQ5hTM2TVlLVFdmpqmTw5oWva2/zb8j1ws1mbZWsq0NVXoFpzygXW7SHmAADYbn++QmuqMjjuyZNSRty11MSyTMfRBsvufqMdTqXKhcRRtD5eUHP8R8m+Dpy1bWSE1BP/wDRIHVewUKLMfQEfbmtz8XyCqnTK5JRLNc/ETqpJUE3K9hfbqNxblfCzDSi/hmMRF1LTaRYxxgkadvxMR9ADa2O8EkE9V4cCqZlARiq8xvZR7bC/PlhhrNozD1/TVUZc5MmiY/EM8hZiRZyfMSbD5j398Rs0Ec9DMqENJEpcIDYqQLkbd1v9vXBmpyCuoqD4uRFVV5qDdk2G/p9MJktQaXOnludpFDKeTLYXB9MARyWwZo0vuH4epEhqGRBM7FNtQANtK9z7nG5qp63w/GllYfMEdyR6X7n/wBdt4eZU3h5jNS6j8PFK2pjze3M/bYD1GO6vcSSgjU5Cr6WFtvbzfbBcYEIj7ztb1JU1ZHSR+Gih55PKN+Z7eg9ceDKK3NWWCg8w/GdNiR3PYdgfrfEKio5Mxz+KBQbk/f09h1774t/LaCHLqVYIOQ+Zjzc9ziDx3F7ryxIHAletwdmmXRXiQTeXziF/lb6/T88LrtMKyWExsgiss2pPkO/fb7/ANMXcLi2/LliLW5dR10RStpYZlJudaAm/e/0GKh+YHyvgAymaugSeENS7yX2C2832GMwZmytcsraukWS0cUpIuNwOQ/8fvjMW3tHE0y2jdjEm5dURwP+wlYBrBgu2rbe/wCeCFLl1HWyMJaDL5VdfN/hlUt7lQDgHGJVrtoVZlN74aKWpEELEIFJFhg73ANgxu/Soy5IyZCzDJcjoacyDKKIPq5sGYfYtbC0+ZSqXSiSKkTtSxrHf3IF8T8/q/FjKC7WbvgFCCEY9fXAfIWlF0ddRChRk/pBeYaviDcm3Mnuccqa6SRFdjq6YlT6ZKmSMA+U2x0igs0Z22N8E3YEyRSWuJX0YdraMmmilFlUoD9xfAyOILe/TBdYquqo1AY+CmwY8ttsZHlZLBXkN+thiikkdTfsrGQTB0LKW0Yb4s3m+CpKR6upBeMkwwgefcrs1rj5Tfccx63VZqJYJbjXbDjRRmKCJbEFY7b78/Mf/wBW+mIarIy0UdVfAPzMhhgo4tUcCREm3lFyftuT9cc1py8wqqpbCO/gwj8F+vq2JgAPvjGYKpZjZR5ie3rjhx1C7eOIv51XSQqIoh4ckh1sx5gA2/u/bDR+i/KYpEqM2lW7NIY4Qw2AHMj13I+mAWX0lPm8FVWVUbFpZvDgt/u0Ub7db6t+R2597F4RoRl2RQ0yqoKySXF7i+tuuOI4mTrbsJsA/eEMyUPl1SGB3hbb0tikplj+Nqq2oP8AhYZDz5SsPw+2wv2HqQDdOcSRx5dKksywJL+x8QnYajpv9L3wl5twTJHmCZnTTJPS08TNBFbVGj/gsPfffa+5PTFQOcxTTagVAgmVLW1klTPJI5YFmJJOxvz/AJ74nZewPhKT/somf/mJI/l/PBnjGkepyikzSpiZK6CdqWpdlCGQEakY97DbATKYwUuf94Sv2K/6nBDjGYxS7eTmNXAUKNxPUOzDVCnkv1NgD/8AonFj3Fgbjf1xVuQZNNW0lRWU9ckFSla0YRpRGSAoIYEsvXbbDNQ8Uy0Ey0HESFXv5KpBqR/8wH8xscDdSeoM2ZbEbDtp/iv+Vv8AXEIVgasmgVgfCKBgO5Bv/wCP3xzgzvL6toIaWcSyNKxIUfKgU3Y9hcL98D/iaHKqn/FVdOs0k8rv+0BO8i2FudwNrYptkKYtcZkfrRpV2M8KM31A/wBBjzA/iWtjnq2lYsEWNFsQQeQHI+oxmL4mlU+1QMxkWCRY0ksdBUcx1wLzWt0L4cZ3vbBjiTM9FHrjGmNSFAHQHa+Euonbw/GJv5hi2pQhzNPROGTe/qeV0hWF2O+18QKCfTqjfdf3u2JstpIJFJ/CNJ/v1GBfiKH0qBa1/fFEH4wOvvK3CwH1PVQCodxbmScTEC6416nA4SbhRu3XErL5PHrpNXMDSo/v2/PFyCIlpLUNgX5Masuk05eYi1iGIxKgYeLdiP7GAQkihiZ5TpHO98cjO9wY/JcA7KMVRyBNy2tAcDuGJ4op62GDxF/aSKCL+uJaz5h+sZWcQrRMgaEqt7sbE7+m+IGQyvU1GqUAiAag2m+/Jb/W2GCKMRw6InJIFgSQTf3wRn3LiZdtWX49TZG1KGANj3GA3EVd4cRpIr6mAMn8K32H1xIra5stpJqmUkiJPlc2uelvc7YE5NCmbUUk8snmmnUTMx+RF8z/APbc/TA1y0g3oOD3CuXTy0KUFIsEtljDN5DbU/mI/wC630xaeWgCihYcnu4/5iT/AFxWtLUx1WcLOrK2pzIqg9vNb8sWYAlFQKGuVp4bG3ZR/oMHsTHEwdTZvxFbjKY1NTFTRTR/sybRttrbkTflsDax/iwHy3OMwySUJExCXuYJR5T7D17jFfcZ8T1tVm1VDDMY0ifQSn4yDufqbn64CZfnmY0BtFVO8f8AwpRrX7HFzpSRkRF7awdplyT1uV8VPJQPHJGah9Wi3lLgXJBHbc3FvbChHk8dBncNGG8aI1ke/TS55X9dP2wDoONZKWfX+raUBhocoXvp62DMR9OWGvhsnMqkz+J8QkMq1TOBdnChwtgOpJAt3Bwt4LKsluo9prayNqGE+A42VMxgYuFfw5RpYqfNqNwRY9sZn+V5LlSfEzCeWpc/s4nnLFyOpJ3t9fTB3J8t+CLOwKkxQxbb3CJa/wByftgPxhkVTVyCupNchVNMkSi503O6jrz5YHuOcRoFS2YK4XolzDL80pSQrTNAmsr/AJ26W56O+JuZ0OTUGX1ckmWmmqC37MLUXQHqLAAkb35knvjfgZamMVEUlG6QsVcTNcaSoIC2PzbN07YE8dTsJ3aRgsUTlIVtvK4ALEeg8i37m3exEc5xAuqs/wCUWZZ1mqrSnWF1SSk9Sdt7e4xmIaUMqxTq09PeZVCkSX0WNzf3xmC+Iwg1eB1HaqjOZZRIq7s8e1+4tb8xgCtCsEP7ZrgjcHle22G6hp44KdYUHkGwBwk5zUSNVSRE+UX29jtjrzvVW+ZsK61lzIlVULcBDupO+IqQFpNQ5XP2xKjjTW+3PniXDGvbAt20QS6c3sCTBq0ug6h82+NIpHp6kOi+QKV0+n9gYNtGvbHCSGPXyxAs3cQlv00qRtOMQOzTySB5CW31FTyvv/rgtSeI92kvqsLe/fGoRe2NZp2hEaqqkNa9/wD1jid3Ak0U/bk2OcxiySSSBJ/BiMsllYIGA1AXB/Mg+ttr4K0uYGogEjQOjairAG5U35EG2AGWStpZgFB1RrsOdzjalzCoqP1g0rBmp4pHRjufKdlPp+frizJisGD1OoxaxX9IUqsty+tEi1ckrM5B1SOVO2wsNhbG9BBl1LTChoZYtJuApkBJJ2N9+xxwopmNfSxMAVaSzX6i/LALjKtkynNqqmy5I4EkjZ2KL5jdztft6csRSS0Qu1aLk7ecdwx+j6haqzd5IyA0NiSeSAm5P2Vh9cWfn1dG2S1b0cqTOukERsG68jbvy+uKs/RFqaGvlMja3K6jsb78t8F80qpaZ6ipDa3QqBqHQC43Fj1PXltgtjZeZZfOJUEpZpXZzck3J9caX5X6i+HbiOio4oGrI6SJZSZCQAbEixvbpzPLA1Y4wWQRIApsPLjTRtwmddVhzAEFPJO4VEO/U8hhm4azao4bld456diQytFLcgXtc8weYBxAqpWgpJTFZSOW3L+74BndXJvcdb9zbHMoK8ygY1tlZamS8dU2a5sIKiF4lcEmZGuEttuCuw7n1wdnzCjWYr+uZ6ORTyqaZAgP+bSPvqxY/C+QZZw/lYpcqpI4VCLrcKNcptzY9TjpSZBlFFN49Nl1Okqt5X0XK6m3sTy+mM56Qx4jyawgYaJmWy1YDGsLTRLY/FQU76CvO/4rWI33I3Fjin86q804t4jqmoctq5rP4UVPFCxaKO5IuOhJJYk9ScfUrnSQB+8B98IFFnmY5z+kDNOHWqPg6CjUP/hFCvNfo7EE/wDTpPriUqCcwT6lnlYUfAHEkUaR5uaSkMgvFTzStJOwHUJErEjv264zH0PTUNLlsTfCQhWc+dySzue7Md2PqScZgsELGxP/2Q==",
-            genre: "Fantasy",
-            director: "Goro Taniguchi"
-        }
-    ]);
-    const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
-    if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
-        movieData: selectedMovie,
-        onBackClick: ()=>setSelectedMovie(null)
-    }, void 0, false, {
-        fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 37,
-        columnNumber: 13
-    }, undefined);
-    if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: "The list is empty!"
-    }, void 0, false, {
-        fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 45,
-        columnNumber: 16
-    }, undefined);
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                movieData: movie,
-                onMovieClick: ()=>{
-                    setSelectedMovie(movie);
-                }
-            }, movie.id, false, {
-                fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 51,
-                columnNumber: 17
-            }, undefined))
-    }, void 0, false, {
-        fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 49,
-        columnNumber: 9
-    }, undefined);
-};
-_s(MainView, "m8iRwPYOn1MgMXjGdm6hrRDG4fQ=");
-_c = MainView;
-var _c;
-$RefreshReg$(_c, "MainView");
-
-  $parcel$ReactRefreshHelpers$f7a6.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-js/src/esmodule-helpers.js":"6ngmn","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"gAMAS"}],"bwuIu":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$67b2.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "MovieCard", ()=>MovieCard);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-const MovieCard = ({ movieData, onMovieClick })=>{
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        onClick: ()=>{
-            onMovieClick(movieData);
-        },
-        children: movieData.title
-    }, void 0, false, {
-        fileName: "src/components/movie-card/movie-card.jsx",
-        lineNumber: 3,
-        columnNumber: 9
-    }, undefined);
-};
-_c = MovieCard;
-var _c;
-$RefreshReg$(_c, "MovieCard");
-
-  $parcel$ReactRefreshHelpers$67b2.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"6ngmn","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"gAMAS"}],"6ngmn":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || Object.prototype.hasOwnProperty.call(dest, key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"ggaUx":[function(require,module,exports) {
+},{"55a07972f072df0f":"5noxb"}],"ggaUx":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$e9f6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27585,6 +28364,257 @@ $RefreshReg$(_c, "MovieView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"6ngmn","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"gAMAS"}]},["iyKUh","fGj2h","d8Dch"], "d8Dch", "parcelRequireaec4")
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"6ngmn","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"gAMAS"}],"9YtA0":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$9fee = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$9fee.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "LoginView", ()=>LoginView);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _s = $RefreshSig$();
+const LoginView = ({ onLoggedIn })=>{
+    _s();
+    const [username, setUsername] = (0, _react.useState)("");
+    const [password, setPassword] = (0, _react.useState)("");
+    const handleSubmit = (event)=>{
+        event.preventDefault();
+        const data = {
+            Username: username,
+            Password: password
+        };
+        fetch("https://testingmovieapi.onrender.com/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        }).then((response)=>response.json()).then((data)=>{
+            console.log("Login response:", data);
+            if (data.user) {
+                localStorage.setItem("user", JSON.stringify(data.user));
+                localStorage.setItem("token", data.token);
+                onLoggedIn(data.user, data.token);
+            } else alert("no such user");
+        }).catch((e)=>{
+            alert("Something went wrong");
+        });
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
+        onSubmit: handleSubmit,
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                children: [
+                    "Username:",
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                        type: "text",
+                        value: username,
+                        onChange: (e)=>setUsername(e.target.value),
+                        required: true
+                    }, void 0, false, {
+                        fileName: "src/components/login-view/login-view.jsx",
+                        lineNumber: 42,
+                        columnNumber: 17
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/login-view/login-view.jsx",
+                lineNumber: 40,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                children: [
+                    "Password:",
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                        type: "password",
+                        value: password,
+                        onChange: (e)=>setPassword(e.target.value),
+                        required: true
+                    }, void 0, false, {
+                        fileName: "src/components/login-view/login-view.jsx",
+                        lineNumber: 50,
+                        columnNumber: 17
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/login-view/login-view.jsx",
+                lineNumber: 48,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                type: "submit",
+                children: "Submit"
+            }, void 0, false, {
+                fileName: "src/components/login-view/login-view.jsx",
+                lineNumber: 56,
+                columnNumber: 13
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/login-view/login-view.jsx",
+        lineNumber: 39,
+        columnNumber: 9
+    }, undefined);
+};
+_s(LoginView, "Lrw7JeD9zj6OUWhT/IH4OIvPKEk=");
+_c = LoginView;
+var _c;
+$RefreshReg$(_c, "LoginView");
+
+  $parcel$ReactRefreshHelpers$9fee.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"6ngmn","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"gAMAS"}],"4OGiN":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$73d1 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$73d1.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "SignupView", ()=>SignupView);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _s = $RefreshSig$();
+const SignupView = ()=>{
+    _s();
+    const [username, setUsername] = (0, _react.useState)("");
+    const [password, setPassword] = (0, _react.useState)("");
+    const [email, setEmail] = (0, _react.useState)("");
+    const [birthday, setBirthday] = (0, _react.useState)("");
+    const handleSubmit = (event)=>{
+        event.preventDefault();
+        const data = {
+            Username: username,
+            Password: password,
+            Email: email,
+            Birthday: birthday
+        };
+        fetch("https://testingmovieapi.onrender.com/signup", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then((response)=>{
+            if (response.ok) {
+                alert("Signup successful");
+                window.location.reload();
+            } else alert("Signup failed");
+        });
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
+        onSubmit: handleSubmit,
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                children: [
+                    "Username:",
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                        type: "text",
+                        value: username,
+                        onChange: (e)=>setUsername(e.target.value),
+                        required: true,
+                        minLength: "3"
+                    }, void 0, false, {
+                        fileName: "src/components/signup-view/signup-view.jsx",
+                        lineNumber: 39,
+                        columnNumber: 17
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/signup-view/signup-view.jsx",
+                lineNumber: 37,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                children: [
+                    "Password:",
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                        type: "password",
+                        value: password,
+                        onChange: (e)=>setPassword(e.target.value),
+                        required: true
+                    }, void 0, false, {
+                        fileName: "src/components/signup-view/signup-view.jsx",
+                        lineNumber: 49,
+                        columnNumber: 17
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/signup-view/signup-view.jsx",
+                lineNumber: 47,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                children: [
+                    "Email:",
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                        type: "email",
+                        value: email,
+                        onChange: (e)=>setEmail(e.target.value),
+                        required: true
+                    }, void 0, false, {
+                        fileName: "src/components/signup-view/signup-view.jsx",
+                        lineNumber: 58,
+                        columnNumber: 17
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/signup-view/signup-view.jsx",
+                lineNumber: 56,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                children: [
+                    "Birthday:",
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                        type: "birthday",
+                        value: birthday,
+                        onChange: (e)=>setBirthday(e.target.value),
+                        required: true
+                    }, void 0, false, {
+                        fileName: "src/components/signup-view/signup-view.jsx",
+                        lineNumber: 67,
+                        columnNumber: 17
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/signup-view/signup-view.jsx",
+                lineNumber: 65,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                type: "submit",
+                children: "Submit"
+            }, void 0, false, {
+                fileName: "src/components/signup-view/signup-view.jsx",
+                lineNumber: 74,
+                columnNumber: 9
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/signup-view/signup-view.jsx",
+        lineNumber: 36,
+        columnNumber: 9
+    }, undefined);
+};
+_s(SignupView, "jsOQN3GC2XlBG9ITlzCdpyJOnso=");
+_c = SignupView;
+var _c;
+$RefreshReg$(_c, "SignupView");
+
+  $parcel$ReactRefreshHelpers$73d1.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"6ngmn","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"gAMAS"}],"lJZlQ":[function() {},{}]},["iyKUh","fGj2h","d8Dch"], "d8Dch", "parcelRequireaec4")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
