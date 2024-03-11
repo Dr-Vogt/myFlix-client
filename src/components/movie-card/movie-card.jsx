@@ -82,14 +82,15 @@ export const MovieCard = ({ movieData, setUser }) => {
         <Card.Text>{movieData.Genre.Name}</Card.Text>
         <Card.Text>{movieData.Director.Name}</Card.Text>
         <Link to={`/movies/${encodeURIComponent(movieData._id)}`}>
-          <Button className="open-button" variant="link">Open</Button>
+          <Button className="open-button" variant="link" style={{ marginLeft: '16px' }}>Open</Button>
         </Link>
         <Card.Body className="favorite-btns">
           <Button className="fav-btn" onClick={addFavoriteMovie}>
-            +
+            Add Fav
           </Button>
+          <span style={{ marginLeft: '10px' }}></span>
           <Button className="fav-btn" onClick={removeFavoriteMovie}>
-            -
+            Remove Fav
           </Button>
         </Card.Body>
       </Card.Body>

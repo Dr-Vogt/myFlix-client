@@ -33,8 +33,8 @@ export const SignupView = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
+    <form onSubmit={handleSubmit} className="login-form">
+      <label className="input-label">
         Username:
         <input
           type="text"
@@ -44,7 +44,7 @@ export const SignupView = () => {
           minLength="3"
         />
       </label>
-      <label>
+      <label className="input-label">
         Password:
         <input
           type="password"
@@ -53,8 +53,8 @@ export const SignupView = () => {
           required
         />
       </label>
-      <label>
-        Email:
+      <label className="input-label">
+        Email:   
         <input
           type="email"
           value={email}
@@ -62,7 +62,7 @@ export const SignupView = () => {
           required
         />
       </label>
-      <label>
+      <label className="input-label">
         Birthday:
         <input
           type="birthday"
@@ -71,7 +71,7 @@ export const SignupView = () => {
           required
         />
       </label>
-      <button type="submit">Submit</button>
+      <button type="submit" className="submit-button">Submit</button>
     </form>
   );
 };

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Col, Row, Container, Button, Card, Form } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
 import { MovieCard } from "../movie-card/movie-card";
+import { PersonSquare } from "react-bootstrap-icons";
 
 export const ProfileView = ({ user, movies, setUser }) => {
   const token = localStorage.getItem("token");
@@ -77,6 +78,7 @@ export const ProfileView = ({ user, movies, setUser }) => {
           <Card>
             <Card.Body>
               <Card.Title>My Profile</Card.Title>
+              <PersonSquare variant="top" color="palegreen" className="my-4" size={180} />
               <Card.Text>Username: {user.Username}</Card.Text>
               <Card.Text>Email: {user.Email}</Card.Text>
               <Card.Text>Birthday: {user.Birthday}</Card.Text>
@@ -123,7 +125,7 @@ export const ProfileView = ({ user, movies, setUser }) => {
                 onChange={(e) => setBirthday(e.target.value)}
               />
             </Form.Group>
-            <Button type="submit" onClick={handleUpdate} className="mt-3 me-2">
+            <Button type="submit" onClick={handleUpdate} className="mt-3 bg-success border-success me-2">
               Update
             </Button>
             <Button
@@ -136,16 +138,15 @@ export const ProfileView = ({ user, movies, setUser }) => {
         </Col>
       </Row>
       <Row className="justify-content-md-center mx-3 my-4">
-        <h2 className="profile-title">Favorite movies</h2>
+        <h2 className="profile-title">Favorite Movies</h2>
         {favMov.map((movieData) => {
           return (
             <Col
               key={movieData._id}
-              sm={7}
-              md={5}
+
               lg={3}
               xl={2}
-              className="mx-2 mt-2 mb-5 col-6"
+              className="mx-2 mb-5 col-6"
             >
               <MovieCard movieData={movieData} setUser={setUser} user={user} />
             </Col>

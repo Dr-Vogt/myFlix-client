@@ -1,7 +1,8 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Form from "react-bootstrap/Form";
 
-export const NavigationBar = ({ user, onLoggedOut }) => {
+export const NavigationBar = ({ user, onLoggedOut, handleSearchInput }) => {
   return (
     <>
       <Navbar bg="dark" data-bs-theme="dark">
@@ -27,6 +28,14 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
                   Profile
                 </Nav.Link>
                 <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
+                <Form>
+                  <Form.Control
+                    id="search-bar"
+                    type="text"
+                    placeholder="Search..."
+                    onChange={handleSearchInput}
+                  />
+                </Form>
               </>
             )}
           </Nav>
@@ -35,37 +44,3 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
     </>
   );
 };
-{
-  /*<Navbar bg="light" expand="lg">
-      <Container>
-        <Navbar.Brand as={Link} to="/">
-          MyFlix
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navrbar-nav">
-          <Nav className="me-auto">
-            {!user && (
-              <>
-                <Nav.Link as={Link} to="/login">
-                  Login
-                </Nav.Link>
-                <Nav.Link as={Link} to="/signup">
-                  Signup
-                </Nav.Link>
-              </>
-            )}
-            {user && (
-              <>
-                <Nav.Link as={Link} to="/">
-                  Home
-                </Nav.Link>
-                <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
-              </>
-            )}
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-            </Navbar>
-  );
-};*/
-}

@@ -24,6 +24,8 @@ export const MainView = () => {
 
   const [user, setUser] = useState(storedUser ? storedUser : null);
 
+  const [filteredMovies, setFilteredMovies] = useState([]);
+
   useEffect(() => {
     if (!token) {
       return;
@@ -40,14 +42,33 @@ export const MainView = () => {
       });
   }, [token]);
 
+  useEffect(() => {
+    setFilteredMovies(movies);
+  }, [movies]);
+
+  const handleSearchInput = (e) => {
+    const searchWord = e.target.value.toLowerCase();
+    let tempArray = movies.filter(
+      (movie) =>
+        movie.Title.toLowerCase().includes(searchWord) ||
+        (movie.Genre && movie.Genre.Name.toLowerCase().includes(searchWord)) ||
+        (movie.Director &&
+          movie.Director.Name.toLowerCase().includes(searchWord))
+    );
+    setFilteredMovies(tempArray);
+    
+  };
+
   return (
     <BrowserRouter>
       <NavigationBar
         user={user}
         onLoggedOut={() => {
           setUser(null);
-          setToken(null);
+          localStorage.removeItem("token");
+          localStorage.removeItem("user");
         }}
+        handleSearchInput={handleSearchInput}
       />
       <Row className="justify-content-md-center">
         <Routes>
@@ -110,8 +131,8 @@ export const MainView = () => {
                   <Col> The list is empty!</Col>
                 ) : (
                   <>
-                    {movies.map((movies) => (
-                      <Col className="mb-4" key={movies.id} md={3}>
+                    {filteredMovies.map((movies) => (
+                      <Col className="mb-3" key={movies.id} md={3} style={{ padding: '20px' }}>
                         <MovieCard movieData={movies} />
                       </Col>
                     ))}
