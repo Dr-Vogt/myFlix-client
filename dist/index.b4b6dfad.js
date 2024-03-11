@@ -27455,7 +27455,7 @@ var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
 var _s = $RefreshSig$();
-const MovieCard = ({ movieData, setUser })=>{
+const MovieCard = ({ movieData })=>{
     _s();
     const token = localStorage.getItem("token");
     const user = JSON.parse(localStorage.getItem("user"));
@@ -27479,7 +27479,6 @@ const MovieCard = ({ movieData, setUser })=>{
             if (user) {
                 alert("successfully added to favorites");
                 localStorage.setItem("user", JSON.stringify(user));
-                setUser(user);
                 setIsFavorite(true);
             }
         }).catch((error)=>{
@@ -27499,7 +27498,6 @@ const MovieCard = ({ movieData, setUser })=>{
             if (user) {
                 alert("successfully deleted from favorites");
                 localStorage.setItem("user", JSON.stringify(user));
-                setUser(user);
                 setIsFavorite(false);
             }
         }).catch((error)=>{

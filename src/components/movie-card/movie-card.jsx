@@ -4,7 +4,7 @@ import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-export const MovieCard = ({ movieData, setUser }) => {
+export const MovieCard = ({ movieData,  }) => {
   const token = localStorage.getItem("token");
   const user = JSON.parse(localStorage.getItem("user"));
   const [isFavorite, setIsFavorite] = useState(false);
@@ -37,7 +37,7 @@ export const MovieCard = ({ movieData, setUser }) => {
         if (user) {
           alert("successfully added to favorites");
           localStorage.setItem("user", JSON.stringify(user));
-          setUser(user);
+          
           setIsFavorite(true);
         }
       })
@@ -64,7 +64,7 @@ export const MovieCard = ({ movieData, setUser }) => {
         if (user) {
           alert("successfully deleted from favorites");
           localStorage.setItem("user", JSON.stringify(user));
-          setUser(user);
+          
           setIsFavorite(false);
         }
       })
