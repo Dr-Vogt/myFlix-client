@@ -23,7 +23,7 @@ export const MovieView = ({ movies }) => {
   return (
     <div>
       <div>
-        <img className="w-100" src={movie.ImagePath} />
+        <img className="movie-image" src={movie.ImagePath} />
       </div>
       <div>
         <span>Title: </span>

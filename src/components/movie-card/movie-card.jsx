@@ -6,20 +6,36 @@ import { useEffect, useState } from "react";
 
 export const MovieCard = ({ movieData,  }) => {
   const token = localStorage.getItem("token");
-  const user = JSON.parse(localStorage.getItem("user"));
+ 
   const [isFavorite, setIsFavorite] = useState(false);
+  const [user, setUser] = useState(null);
+  const updateUserFavorites = (updatedFavorites) => {
+    const updatedUser = { ...user, favoriteMovies: updatedFavorites };
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+    setUser(updatedUser);
+  };
 
   useEffect(() => {
-    if (
-      user &&
-      user.favoriteMovies &&
-      user.favoriteMovies.includes(movieData._id)
-    ) {
-      setIsFavorite(true);
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser) {
+    setUser(storedUser);
     }
-  }, [movieData._id]);
+  }, []);
 
-  console.log(user);
+  useEffect(() => {
+    console.log("user in MovieCard:", user);
+    console.log("movieData in MovieCard:", movieData);
+    console.log("isFavorite in MovieCard:", isFavorite);
+
+    if (user && user.favoriteMovies && user.favoriteMovies.includes(movieData._id)) {
+      setIsFavorite(true);
+    } else {
+      setIsFavorite(false);
+    }
+  }, [movieData._id, user]);
+
+  console.log("Final isFavorite in MovieCard:", isFavorite);
+
 
   const addFavoriteMovie = () => {
     fetch(
@@ -33,11 +49,11 @@ export const MovieCard = ({ movieData,  }) => {
           console.log("Failed to add fav movie");
         }
       })
-      .then((user) => {
-        if (user) {
+      .then((updatedUser) => {
+        if (updatedUser) {
           alert("successfully added to favorites");
-          localStorage.setItem("user", JSON.stringify(user));
-          
+          localStorage.setItem("user", JSON.stringify(updatedUser));
+          setUser(updatedUser);
           setIsFavorite(true);
         }
       })
@@ -60,17 +76,33 @@ export const MovieCard = ({ movieData,  }) => {
           alert("Failed");
         }
       })
-      .then((user) => {
-        if (user) {
+      .then((updatedUser) => {
+        if (updatedUser) {
           alert("successfully deleted from favorites");
-          localStorage.setItem("user", JSON.stringify(user));
-          
+          localStorage.setItem("user", JSON.stringify(updatedUser));
+          setUser(updatedUser);
           setIsFavorite(false);
         }
       })
       .catch((error) => {
         alert(error);
       });
+  };
+
+  const updateLocalStorage = ( movieId, isFavorite) => {
+    if (!user || !user.Username) return;
+    let updatedUser = JSON.parse(localStorage.getItem("user"));
+    if (!updatedUser) return;
+
+    if (isFavorite) {
+      if (!updatedUser.favoriteMovies.includes(movieId)) {
+        updatedUser.favoriteMovies.push(movieId);
+        localStorage.setItem("user", JSON.stringify(updatedUser));
+      }
+    } else {
+      updatedUser.favoriteMovies = updatedUser.favoriteMovies.filter(id => id !== movieId);
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+    }
   };
 
   return (
@@ -85,13 +117,17 @@ export const MovieCard = ({ movieData,  }) => {
           <Button className="open-button" variant="link" style={{ marginLeft: '16px' }}>Open</Button>
         </Link>
         <Card.Body className="favorite-btns">
-          <Button className="fav-btn" onClick={addFavoriteMovie}>
-            Add Fav
-          </Button>
-          <span style={{ marginLeft: '10px' }}></span>
-          <Button className="fav-btn" onClick={removeFavoriteMovie}>
-            Remove Fav
-          </Button>
+        {user && ( 
+          isFavorite ? (
+            <Button className="fav-btn" onClick={removeFavoriteMovie}>
+              Remove Fav
+            </Button>
+          ) : (
+            <Button className="fav-btn" onClick={addFavoriteMovie}>
+              Add Fav
+            </Button>
+          )
+        )}
         </Card.Body>
       </Card.Body>
     </Card>
@@ -103,5 +139,5 @@ MovieCard.propTypes = {
     Title: PropTypes.string.isRequired,
   }),
   
-  setUser: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
 };
