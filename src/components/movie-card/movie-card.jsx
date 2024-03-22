@@ -4,13 +4,14 @@ import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-export const MovieCard = ({ movieData,  }) => {
+export const MovieCard = ({ movieData, }) => {
   const token = localStorage.getItem("token");
+  
  
   const [isFavorite, setIsFavorite] = useState(false);
   const [user, setUser] = useState(null);
   const updateUserFavorites = (updatedFavorites) => {
-    const updatedUser = { ...user, favoriteMovies: updatedFavorites };
+    const updatedUser = { ...user, FavoriteMovies: updatedFavorites };
     localStorage.setItem("user", JSON.stringify(updatedUser));
     setUser(updatedUser);
   };
@@ -18,21 +19,24 @@ export const MovieCard = ({ movieData,  }) => {
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     if (storedUser) {
-    setUser(storedUser);
+      setUser(storedUser);
+      if (storedUser.FavoriteMovies && storedUser.FavoriteMovies.includes(movieData._id)) {
+        setIsFavorite(true);
+      }
+    } else {
+      // If user is not in local storage, fetch user data from the server
+      fetchUserData(`https://testingmovieapi.onrender.com/users/${user.Username}/movies/${movieData._id}`,
+      { method: "PUT", headers: { Authorization: `Bearer ${token}` } });
+    
     }
-  }, []);
+  }, [movieData._id]);
 
   useEffect(() => {
-    console.log("user in MovieCard:", user);
-    console.log("movieData in MovieCard:", movieData);
-    console.log("isFavorite in MovieCard:", isFavorite);
-
-    if (user && user.favoriteMovies && user.favoriteMovies.includes(movieData._id)) {
-      setIsFavorite(true);
-    } else {
-      setIsFavorite(false);
+    if (user && user.FavoriteMovies) {
+      const isFavorite = user.FavoriteMovies.includes(movieData._id);
+      setIsFavorite(isFavorite);
     }
-  }, [movieData._id, user]);
+  }, [user, movieData._id]);
 
   console.log("Final isFavorite in MovieCard:", isFavorite);
 
@@ -89,18 +93,18 @@ export const MovieCard = ({ movieData,  }) => {
       });
   };
 
-  const updateLocalStorage = ( movieId, isFavorite) => {
+  const updateLocalStorage = ( movie_id, isFavorite) => {
     if (!user || !user.Username) return;
     let updatedUser = JSON.parse(localStorage.getItem("user"));
     if (!updatedUser) return;
 
     if (isFavorite) {
-      if (!updatedUser.favoriteMovies.includes(movieId)) {
-        updatedUser.favoriteMovies.push(movieId);
+      if (!updatedUser.FavoriteMovies.includes(movie_id)) {
+        updatedUser.FavoriteMovies.push(movie_id);
         localStorage.setItem("user", JSON.stringify(updatedUser));
       }
     } else {
-      updatedUser.favoriteMovies = updatedUser.favoriteMovies.filter(id => id !== movieId);
+      updatedUser.FavoriteMovies = updatedUser.FavoriteMovies.filter(id => id !== movie_id);
       localStorage.setItem("user", JSON.stringify(updatedUser));
     }
   };

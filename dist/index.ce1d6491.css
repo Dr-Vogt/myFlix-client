@@ -119,6 +119,8 @@
 }
 
 [data-bs-theme="dark"] {
+  --lightningcss-light: ;
+  --lightningcss-dark: initial;
   color-scheme: dark;
   --bs-body-color: #dee2e6;
   --bs-body-color-rgb: 222, 226, 230;
@@ -7198,15 +7200,12 @@ textarea.form-control-lg {
 
 .placeholder-wave {
   animation: 2s linear infinite placeholder-wave;
-  -webkit-mask-image: linear-gradient(130deg, #000 55%, #000c 75%, #000 95%);
   mask-image: linear-gradient(130deg, #000 55%, #000c 75%, #000 95%);
-  -webkit-mask-size: 200% 100%;
   mask-size: 200% 100%;
 }
 
 @keyframes placeholder-wave {
   100% {
-    -webkit-mask-position: -200% 0;
     mask-position: -200% 0;
   }
 }
